@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Арсений Рандин | Веб-разработчик</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #f8fafc;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .project-card {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .skill-badge {
+            transition: all 0.3s ease;
+        }
+        
+        .skill-badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .progress-bar {
+            transition: width 1.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Навигация -->
+    <nav class="fixed w-full bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg shadow-sm z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="text-xl font-bold gradient-text">AP</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="nav-link text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">Главная</a>
+                        <a href="#about" class="nav-link text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">Обо мне</a>
+                        <a href="#skills" class="nav-link text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">Навыки</a>
+                        <a href="#projects" class="nav-link text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">Проекты</a>
+                        <a href="#contact" class="nav-link text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">Контакты</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-500 hover:text-gray-900 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Мобильное меню -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="nav-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">Главная</a>
+                <a href="#about" class="nav-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">Обо мне</a>
+                <a href="#skills" class="nav-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">Навыки</a>
+                <a href="#projects" class="nav-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">Проекты</a>
+                <a href="#contact" class="nav-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">Контакты</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Главный блок -->
+    <section id="home" class="min-h-screen flex items-center pt-16 md:pt-0">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Привет, я <span class="gradient-text">Арсений Рандин</span></h1>
+                    <h2 class="text-2xl md:text-3xl text-gray-600 mb-8">Веб-разработчик с опытом 5+ лет</h2>
+                    <p class="text-gray-600 mb-8 text-lg">Создаю современные, быстрые и удобные веб-приложения, а также адаптивные сайты, с акцентом на пользовательский опыт.</p>
+                    <div class="flex space-x-4">
+                        <a href="#contact" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-medium shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">Связаться</a>
+                        <a href="#projects" class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-100 transition duration-300">Мои работы</a>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2 flex justify-center">
+                    <div class="relative">
+                        <div class="floating">
+                            <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" 
+                                 alt="Фото разработчика" 
+                                 class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-white shadow-2xl">
+                        </div>
+                        <div class="absolute -bottom-4 -right-4 bg-white p-4 rounded-lg shadow-md">
+                            <div class="flex items-center space-x-1">
+                                <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                                <span class="text-sm font-medium">Доступен для работы</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Обо мне -->
+    <section id="about" class="py-20 bg-gradient-to-b from-white to-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="gradient-text">Обо мне</span></h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="rounded-xl overflow-hidden shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" 
+                         alt="Рабочее место" 
+                         class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Кто я?</h3>
+                    <p class="text-gray-600 mb-4">Я профессиональный веб-разработчик с более чем 5-летним опытом создания современных веб-приложений. Моя страсть — превращать сложные идеи в простые, красивые и интуитивно понятные веб-решения.</p>
+                    
+                    <div class="space-y-4 mt-8">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-2 rounded-full mr-4">
+                                <i class="fas fa-lightbulb text-blue-600 text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Лучшие практики</h4>
+                                <p class="text-gray-600">Использую современные технологии и слежу за новейшими тенденциями веб-разработки.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-purple-100 p-2 rounded-full mr-4">
+                                <i class="fas fa-bolt text-purple-600 text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Быстрая работа</h4>
+                                <p class="text-gray-600">Оптимизирую производительность приложений для максимальной скорости загрузки.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-green-100 p-2 rounded-full mr-4">
+                                <i class="fas fa-handshake text-green-600 text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Поддержка</h4>
+                                <p class="text-gray-600">Предоставляю полное сопровождение проектов после сдачи.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--<div class="mt-8 flex space-x-4">
+                        <button id="download-cv" class="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition flex items-center space-x-2">
+                            <i class="fas fa-download"></i>
+                            <span>Скачать резюме</span>
+                        </button>-->
+                        <div id="cv-notification" class="hidden px-4 py-3 bg-green-100 text-green-800 rounded-lg font-medium flex items-center space-x-2">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Спасибо за интерес!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Навыки -->
+    <section id="skills" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="gradient-text">Мои навыки</span></h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">Технические навыки</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">HTML5 & CSS3</span>
+                                <span class="text-gray-500">95%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="progress-bar bg-blue-500 h-2 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">JavaScript (ES6+)</span>
+                                <span class="text-gray-500">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="progress-bar bg-blue-500 h-2 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">React.js</span>
+                                <span class="text-gray-500">88%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="progress-bar bg-blue-500 h-2 rounded-full" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Node.js</span>
+                                <span class="text-gray-500">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="progress-bar bg-blue-500 h-2 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">Профессиональные навыки</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Адаптивный дизайн</span>
+                                <span class="text-gray-500">97%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="progress-bar bg-purple-500 h-2 rounded-full" style="width: 97%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">UX/UI дизайн</span>
+                                <span class="text-gray-500">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="progress-bar bg-purple-500 h-2 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">SEO оптимизация</span>
+                                <span class="text-gray-500">75%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="progress-bar bg-purple-500 h-2 rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Командная работа</span>
+                                <span class="text-gray-500">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="progress-bar bg-purple-500 h-2 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold mb-6 text-center">Технологии и инструменты</h3>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div class="skill-badge px-4 py-2 bg-white rounded-lg shadow-md flex items-center space-x-2">
+                        <i class="fab fa-html5 text-orange-500 text-xl"></i>
+                        <span>HTML5</span>
+                    </div>
+                    <div class="skill-badge px-4 py-2 bg-white rounded-lg shadow-md flex items-center space-x-2">
+                        <i class="fab fa-css3-alt text-blue-500 text-xl"></i>
+                        <span>CSS3</span>
+                    </div>
+                    <div class="skill-badge px-4 py-2 bg-white rounded-lg shadow-md flex items-center space-x-2">
+                        <i class="fab fa-js-square text-yellow-500 text-xl"></i>
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="skill-badge px-4 py-2 bg-white rounded-lg shadow-md flex items-center space-x-2">
+                        <i class="fab fa-react text-blue-400 text-xl"></i>
+                        <span>React</span>
+                    </div>
+                    <div class="skill-badge px-4 py-2 bg-white rounded-lg shadow-md flex items-center space-x-2">
+                        <i class="fab fa-node-js text-green-500 text-xl"></i>
+                        <span>Node.js</span>
+                    </div>
+                    <div class="skill-badge px-4 py-2 bg-white rounded-lg shadow-md flex items-center space-x-2">
+                        <i class="fab fa-git-alt text-orange-600 text-xl"></i>
+                        <span>Git</span>
+                    </div>
+                    <div class="skill-badge px-4 py-2 bg-white rounded-lg shadow-md flex items-center space-x-2">
+                        <i class="fab fa-figma text-purple-500 text-xl"></i>
+                        <span>Figma</span>
+                    </div>
+                    <div class="skill-badge px-4 py-2 bg-white rounded-lg shadow-md flex items-center space-x-2">
+                        <i class="fas fa-database text-blue-600 text-xl"></i>
+                        <span>MongoDB</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Проекты -->
+    <section id="projects" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="gradient-text">Мои проекты</span></h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+                <p class="mt-6 text-gray-600 max-w-2xl mx-auto">Ниже представлены некоторые из моих недавних работ. Каждый проект решает уникальные задачи и создается с учетом потребностей пользователей.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Проект 1 -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-md border border-gray-100">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80" 
+                             alt="E-commerce платформа" 
+                             class="w-full h-48 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+                            <h3 class="text-white text-xl font-bold">E-commerce платформа</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Полнофункциональный интернет-магазин с системой управления контентом, корзиной и платежами.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">React</span>
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Node.js</span>
+                            <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded">MongoDB</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="https://arsenycrack.github.io/E-commerce/" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                                <i class="fas fa-external-link-alt mr-2"></i> Демо
+                            </a>
+                            <a href="https://github.com/ArsenyCrack/E-commerce" class="text-gray-600 hover:text-gray-800 font-medium flex items-center">
+                                <i class="fab fa-github mr-2"></i> Код
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Проект 2 -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-md border border-gray-100">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Аналитическая панель" 
+                             class="w-full h-48 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+                            <h3 class="text-white text-xl font-bold">Аналитическая панель</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Консоль управления данными с интерактивными диаграммами и возможностями фильтрации в реальном времени.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">React</span>
+                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">Redux</span>
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">D3.js</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                                <i class="fas fa-external-link-alt mr-2"></i> Демо
+                            </a>
+                            <a href="#" class="text-gray-600 hover:text-gray-800 font-medium flex items-center">
+                                <i class="fab fa-github mr-2"></i> Код
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Проект 3 -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-md border border-gray-100">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1474&q=80" 
+                             alt="Социальная сеть" 
+                             class="w-full h-48 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+                            <h3 class="text-white text-xl font-bold">Социальная сеть</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Медиа-платформа для обмена контентом с системой подписок, лайков и комментариев.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-blue-500 text-white text-xs rounded">Next.js</span>
+                            <span class="px-2 py-1 bg-black text-white text-xs rounded">TypeScript</span>
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">GraphQL</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                                <i class="fas fa-external-link-alt mr-2"></i> Демо
+                            </a>
+                            <a href="#" class="text-gray-600 hover:text-gray-800 font-medium flex items-center">
+                                <i class="fab fa-github mr-2"></i> Код
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <a href="#" class="inline-block px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-medium shadow-lg hover:shadow-xl transition duration-300 flex items-center space-x-2 mx-auto">
+                    <i class="fab fa-github"></i>
+                    <span>Больше проектов на GitHub</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="gradient-text">Свяжитесь со мной</span></h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+                <p class="mt-6 text-gray-600 max-w-2xl mx-auto">Готов обсудить ваш проект или ответить на любые вопросы. Отправьте сообщение, и я свяжусь с вами в ближайшее время.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <form id="contact-form" class="space-y-6 bg-white p-8 rounded-xl shadow-md">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Ваше имя</label>
+                            <input type="text" id="name" name="name" required 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                            <input type="email" id="email" name="email" required 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                        </div>
+                        
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Тема</label>
+                            <input type="text" id="subject" name="subject" 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Сообщение</label>
+                            <textarea id="message" name="message" rows="5" required 
+                                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-medium hover:from-blue-600 hover:to-purple-700 transition flex justify-center items-center space-x-2">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Отправить сообщение</span>
+                        </button>
+                    </form>
+                    
+                    <div id="form-success" class="hidden mt-6 p-4 bg-green-100 text-green-800 rounded-lg font-medium flex items-center space-x-2">
+                        <i class="fas fa-check-circle text-green-600"></i>
+                        <span>Сообщение успешно отправлено! Свяжусь с вами в ближайшее время.</span>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="bg-white p-8 rounded-xl shadow-md space-y-6 h-full">
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">Контактная информация</h3>
+                            <p class="text-gray-600">Всегда рад новым проектам и сотрудничеству. Вы можете связаться со мной любым удобным способом:</p>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-envelope text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Email</h4>
+                                    <a href="mailto:hello@alexeypetrov.com" class="text-gray-600 hover:text-blue-600">hello@alexeypetrov.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-green-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-phone-alt text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Телефон</h4>
+                                    <a href="tel:+79991234567" class="text-gray-600 hover:text-blue-600">+7 (999) 123-45-67</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-purple-100 p-3 rounded-full mr-4">
+                                    <i class="fab fa-github text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">GitHub</h4>
+                                    <a href="https://github.com/alexeypetrov" target="_blank" class="text-gray-600 hover:text-blue-600">github.com/alexeypetrov</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-blue-600 p-3 rounded-full mr-4">
+                                    <i class="fab fa-linkedin-in text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">LinkedIn</h4>
+                                    <a href="https://linkedin.com/in/alexeypetrov" target="_blank" class="text-gray-600 hover:text-blue-600">linkedin.com/in/alexeypetrov</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="pt-4">
+                            <h4 class="font-bold text-gray-800 mb-4">Также я в соцсетях</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition">
+                                    <i class="fab fa-telegram-plane"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center hover:bg-purple-700 transition">
+                                    <i class="fab fa-vk"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-gray-900 transition">
+                                    <i class="fab fa-github-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer class="py-8 bg-gray-900 text-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <a href="#" class="text-xl font-bold gradient-text">Алексей Петров</a>
+                    <p class="text-gray-400 mt-1">Веб-разработчик & UI/UX дизайнер</p>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400">© 2023 Все права защищены.</p>
+                    <p class="text-gray-500 text-sm mt-1">Сделано с <i class="fas fa-heart text-red-500 mx-1"></i> и кофе <i class="fas fa-coffee text-yellow-600 ml-1"></i></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Кнопка "Наверх" -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg flex items-center justify-center hidden hover:bg-blue-700 transition">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Мобильное меню
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Плавный скролл для якорей
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Закрываем мобильное меню после клика
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+        
+        // Кнопка "Наверх"
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Анимация прогресс-баров при скролле
+        const progressBars = document.querySelectorAll('.progress-bar');
+        
+        function animateProgressBars() {
+            progressBars.forEach(bar => {
+                if (isElementInViewport(bar)) {
+                    const width = bar.style.width;
+                    bar.style.width = '0';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 100);
+                }
+            });
+        }
+        
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+        
+        window.addEventListener('scroll', animateProgressBars);
+        window.addEventListener('load', animateProgressBars);
+        
+        // Форма обратной связи
+        const contactForm = document.getElementById('contact-form');
+        const formSuccess = document.getElementById('form-success');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Здесь может быть код для отправки формы (например, через Fetch API)
+            
+            // Показываем сообщение об успехе
+            formSuccess.classList.remove('hidden');
+            contactForm.reset();
+            
+            setTimeout(() => {
+                formSuccess.classList.add('hidden');
+            }, 5000);
+        });
+        
+        // Кнопка "Скачать резюме"
+        const downloadCv = document.getElementById('download-cv');
+        const cvNotification = document.getElementById('cv-notification');
+        
+        downloadCv.addEventListener('click', function() {
+            // Здесь мог бы быть код для скачивания файла
+            
+            // Показываем уведомление
+            cvNotification.classList.remove('hidden');
+            
+            setTimeout(() => {
+                cvNotification.classList.add('hidden');
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
